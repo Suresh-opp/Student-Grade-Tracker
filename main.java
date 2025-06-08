@@ -1,14 +1,14 @@
 import java.util.ArrayList;
-import java.util.Collections; // Required for Collections.min and Collections.max
-import java.util.Comparator;  // Required for custom comparator with Collections.min/max
+import java.util.Collections; 
+import java.util.Comparator;  
 import java.util.Scanner;
 
-// Represents a single student
+
 class Student {
     public String name;
     public String studentID;
-    public double grade; // This will store the individual student's grade
-
+    public double grade; 
+    
     Student(String name, String studentID) {
         this.name = name;
         this.studentID = studentID;
@@ -20,13 +20,12 @@ class Student {
         this.grade = grade;
     }
 
-    // Method to display student details
     public void displayStudentDetails() {
         System.out.println("Name: " + name + ", Student ID: " + studentID + ", Grade: " + grade);
     }
 }
 
-// Manages a collection of students and performs operations on them
+
 class School {
     private ArrayList<Student> students;
     private Scanner scanner; // Scanner for input
@@ -71,35 +70,31 @@ class School {
         System.out.println("\nAverage grade of all students: " + average);
     }
 
-    // --- New Methods for Highest and Lowest Scores ---
-
-    // Method to find and display the highest grade
+   
     public void findAndDisplayHighestGrade() {
         if (students.isEmpty()) {
             System.out.println("No students to find the highest grade from.");
             return;
         }
 
-        // Use Collections.max with a custom comparator to find the student with the highest grade
+       
         Student highestScorer = Collections.max(students, Comparator.comparingDouble(s -> s.grade));
         System.out.println("\nHighest Grade: " + highestScorer.grade + " (Scored by: " + highestScorer.name + ")");
     }
 
-    // Method to find and display the lowest grade
+   
     public void findAndDisplayLowestGrade() {
         if (students.isEmpty()) {
             System.out.println("No students to find the lowest grade from.");
             return;
         }
 
-        // Use Collections.min with a custom comparator to find the student with the lowest grade
         Student lowestScorer = Collections.min(students, Comparator.comparingDouble(s -> s.grade));
         System.out.println("Lowest Grade: " + lowestScorer.grade + " (Scored by: " + lowestScorer.name + ")");
     }
 
-    // --- End New Methods ---
 
-    // Method to display details of all students
+    
     public void displayAllStudentDetails() {
         if (students.isEmpty()) {
             System.out.println("No students to display.");
@@ -112,7 +107,6 @@ class School {
         System.out.println("-------------------------");
     }
 
-    // Close the scanner when done
     public void closeScanner() {
         scanner.close();
     }
@@ -124,7 +118,7 @@ public class Main {
 
         School school = new School(); // Create an instance of the School class
 
-        // Add some sample students
+       
         school.addStudent("Suresh", "30");
         school.addStudent("Sathwik", "21");
         school.addStudent("Alice", "101");
@@ -132,19 +126,16 @@ public class Main {
         school.addStudent("Charlie", "103");
 
 
-        // Input grades for the students
         school.inputGrades();
 
-        // Display all student details (including their grades)
         school.displayAllStudentDetails();
 
-        // Calculate and display the average grade
         school.calculateAndDisplayAverageGrade();
 
-        // Find and display the highest grade
+       
         school.findAndDisplayHighestGrade();
 
-        // Find and display the lowest grade
+        
         school.findAndDisplayLowestGrade();
 
         school.closeScanner(); // 
